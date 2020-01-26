@@ -20,7 +20,7 @@ import time
 import sys
 
 
-def startProgram():
+def start_program():
     print("-"*50)
     print("Created by: eDAB")
     print("Created by: Davor Baric")
@@ -40,7 +40,7 @@ def startProgram():
     time.sleep(1)
 
     argPars = argparse.ArgumentParser(description="Enter the path to the tests")
-    argPars.add_argument('-P', '--path', type=str, help="path to the folder")
+    argPars.add_argument('-p', '--path', type=str, help="path to the folder")
     args = argPars.parse_args()
     path = args.path
     if path:
@@ -53,11 +53,13 @@ def startProgram():
     return path
 
 
-def maxLenghtLine(string, countLine):
+def max_len_line(string, count_line):
     content_string = ""
-    if len(string) > 78:
+    counter2 = string.count("\t")
+
+    if len(string) > 78 and len(string)< 160 and not("\t" * counter2 + "'''") in string:
         print("#" * 50)
-        print("Line", countLine, "in ORIGINAL file is too long")
+        print("Line", count_line, "in ORIGINAL file is too long")
         print("#" * 50)
         string = re.sub(' +', ' ', string)
         # string = (re.sub('\s\s+', " ", string))
@@ -65,23 +67,98 @@ def maxLenghtLine(string, countLine):
         counter = 0
         for i in string:
             counter += 1
-            counter2 = string.count("\t")
             if counter <= 60 and flag is False:
                 content_string += i
             # ADDITIONALLY: long comments in file(comment>78)
             elif i == ' ' and counter > 60 and flag is False and ("\t" * counter2 + "#") in string:
                 flag = True
                 content_string += '\\' + '\n' + '\t' * counter2 + "#"
+            elif i == ' ' and counter > 60 and flag is False and ("\t" * counter2 + " #") in string:
+                flag = True
+                content_string += '\\' + '\n' + '\t' * counter2 + " #"
+            # line without comment
             elif i == ' ' and counter > 60 and flag is False:
                 flag = True
-                content_string += "\\\n"
-
+                content_string += '\\\n'
             else:
                 content_string += i
+
+    if len(string) > 78 and len(string)< 160 and ("\t" * counter2 + "'''") in string:
+        print("#" * 50)
+        print("Line", count_line, "in ORIGINAL file is too long")
+        print("#" * 50)
+        string = re.sub(' +', ' ', string)
+        # string = (re.sub('\s\s+', " ", string))
+        flag = False
+        counter = 0
+        for i in string:
+            counter += 1
+            if counter <= 60 and flag is False:
+                content_string += i
+            elif i == ' ' and counter > 60 and flag is False:
+                flag = True
+                content_string += '\\' + '\n' + '\t'
+            else:
+                content_string += i
+
+    if len(string) >= 160 and not ("\t" * counter2 + "'''") in string:
+        print("#" * 50)
+        print("Line", count_line, "in ORIGINAL file is too long")
+        print("#" * 50)
+        string = re.sub(' +', ' ', string)
+        # string = (re.sub('\s\s+', " ", string))
+        flag = 0
+        counter = 0
+        for i in string:
+            counter += 1
+            if counter < 60 and flag == 0:
+                content_string += i
+            # line without comment
+            elif i == ' ' and counter >= 60 and flag == 0:
+                flag = 1
+                content_string += '\\'+'\n'
+
+            elif i != ' ' and counter > 60 or counter <= 130 and flag == 1:
+                content_string += i
+
+            elif i == ' ' and counter > 130 and flag == 1:
+                flag = 2
+                content_string += '\\'+'\n'
+
+            elif flag == 2:
+                content_string += i
+
+    if len(string) >=160 and ("\t" * counter2 + "'''") in string:
+        print("#" * 50)
+        print("Line", count_line, "in ORIGINAL file is too long")
+        print("#" * 50)
+        string = re.sub(' +', ' ', string)
+        # string = (re.sub('\s\s+', " ", string))
+        flag = 0
+        counter = 0
+        for i in string:
+            counter += 1
+            if counter < 60 and flag == 0:
+                content_string += i
+            # line without comment
+            elif i == ' ' and counter >= 60 and flag == 0:
+                flag = 1
+                content_string += '\n' + '\t' * counter2
+
+            elif i != ' ' and counter > 60 or counter <= 130 and flag == 1:
+                content_string += i
+
+            elif i == ' ' and counter > 130 and flag == 1:
+                flag = 2
+                content_string += '\n' + '\t' * counter2
+
+            elif flag == 2:
+                content_string += i
+
     return content_string
 
 
-def importInFunc(string):
+def import_in_func(string):
     counter = string.count('\t')
     content_string = ""
     matchMoreSpaces = re.sub(' +', ' ', string)
@@ -94,7 +171,7 @@ def importInFunc(string):
     return content_string
 
 
-def startWithImport(string):
+def startswith_import(string):
     import_content = ""
     string = re.sub(' +', ' ', string)
     # string = (re.sub('\s\s+', " ", string))
@@ -106,7 +183,7 @@ def startWithImport(string):
     return import_content
 
 
-def startWithFrom(string):
+def startswith_from(string):
     import_content = ""
     listaFrom = []
     string = re.sub(' +', ' ', string)
@@ -133,7 +210,7 @@ def whitespaces(string):
     return content_string
 
 
-def blankspace(string, listofString):
+def blank_spaces(string, listofString):
     content_string = ""
     operators = "= += -= * / + - < > != == <= >="
 
@@ -172,17 +249,35 @@ def blankspace(string, listofString):
     return content_string
 
 
-def writeContentInCopyFile(final_content_import, final_content, copy_file_name):
+def write_content_in_copy_file(final_content_import, final_content, copy_file_name):
     new_file = open(copy_file_name, "w")
     new_file.write(final_content_import)
     new_file.write(final_content)
     return True
 
 
+def string_startswith_space_no_tab(string, counterSpace):
+    lista_string = []
+    tmp_string = ''
+    for i in string:
+        if i != " ":
+            break
+        else:
+            counterSpace += 1
+            lista_string.append(i)
+    if counterSpace >= 4:
+        lista_string[0:counterSpace] = "\t" * (counterSpace/4)
+        for i in lista_string:
+            tmp_string += i
+        string = tmp_string + string
+
+    return string
+
+
 def main(path):
-    listPyFile = []
-    noPyfile = []
-    listofString = []
+    list_py_file = []
+    no_py_file = []
+    list_of_string = []
 
     for root, dirs, files in os.walk(path):
         for name in files:
@@ -190,7 +285,7 @@ def main(path):
                 print("-" * 50)
                 print("Python file")
                 print("OriginalName Test:", name)
-                listPyFile.append(name)
+                list_py_file.append(name)
                 copy_file_name = "copyOf_" + "" + name
                 print("TestCopy Name:", copy_file_name)
                 print("-" * 50)
@@ -199,34 +294,43 @@ def main(path):
                 with open(os.path.join(root, name), "r") as original_file:
                     import_content = ""
                     content_string = ""
-                    countLine = 0
+                    count_line = 0
                     for string in original_file.readlines():
-                        listofString.append(string)
-                        print(repr(string))
-                        countLine += 1
+                        list_of_string.append(string)
+                        #print repr(string)
+                        count_line += 1
+                        counterSpace = 0
                         # 1.IMPORT
                         if string.startswith("import"):
-                            import_content += startWithImport(string)
+                            import_content += startswith_import(string)
 
                         # 1.1 IMPORT (from math import sys, os ..)
                         elif string.startswith("from"):
-                            import_content += startWithFrom(string)
+                            import_content += startswith_from(string)
 
                         else:
+                            # String start with TAB or SPACE(4) ??????
+                            # if start with space(4)
+                            string = string_startswith_space_no_tab(string, counterSpace)
+
                             # 4. MAXIMUM LENGTH OF LINE - detect
                             if len(string) > 78:
-                                content_string += maxLenghtLine(string, countLine)
+                                content_string += max_len_line(string, count_line)
 
                             # 3. WHITESPACES
                             # whitespaces def and return
                             elif string.startswith("def") or "def" in string:
                                 # 4. SPACES(two blank spaces) between functions in modules and classes
-                                content_string += blankspace(string, listofString)
+                                content_string += blank_spaces(string, list_of_string)
+
+                            elif "return" in string:
+                                string = re.sub(' +', ' ', string)
+                                content_string += string.replace(" = ", "=").replace(" =", "=").replace("= ", "=")
 
                             else:
                                 # import in function
                                 if "\t" in string and "import" in string:
-                                    content_string += importInFunc(string)
+                                    content_string += import_in_func(string)
                                 else:
                                     # whitespaces between variables, in array, call functions...
                                     content_string += whitespaces(string)
@@ -236,17 +340,17 @@ def main(path):
                     final_content_import = import_content.replace('\t', '    ')
                     final_content = content_string.replace('\t', '    ').replace('#', '# ')
 
-                    writeContentInCopyFile(final_content_import, final_content, copy_file_name)
+                    write_content_in_copy_file(final_content_import, final_content, copy_file_name)
 
             else:
-                noPyfile.append(name)
+                no_py_file.append(name)
                 print("NOT Python file")
 
-    return listPyFile, noPyfile
+    return list_py_file, no_py_file
 
 
 if __name__ == '__main__':
-    path = startProgram()
+    path = start_program()
     files = main(path)
     print("All .py files in folder:\n\t", files[0])
     print("NO .py files in folder:\n\t", files[1])
