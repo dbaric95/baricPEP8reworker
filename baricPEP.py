@@ -268,11 +268,9 @@ def string_startswith_space_no_tab(string, counterSpace):
     if counterSpace >= 4:
         lista_string[0:counterSpace] = "\t" * int(counterSpace/4)
         for i in lista_string:
-            print repr(i)
+
             tmp_string += i
         string = str(tmp_string) + str(string)
-        print repr(string)
-
     return string
 
 

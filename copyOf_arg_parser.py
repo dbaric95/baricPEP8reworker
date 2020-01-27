@@ -39,9 +39,12 @@ x = x*2 - 1
 hypot2=x*x + y*y
 c =(a + b) * (a - b)
 
-
-if len(sys.argv)==4 and len(sys.argv)==4 and len(sys.argv) ==\
-4 and len(sys.argv) == 4:
+    '''ovo je jako dugacak komentaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaa
+    aaaaaaaaaaaaaaaa ovo je jako dugacak komentaaaaaaaaaaaaaaaaaaaaaaaaa
+    ovo je jako dugacak komentaaaaaaaaaaaaaaaaaaaaaaaaa ovo je jako dugacak komentaaaaaaaaaaaaaaaaaaaaaaaaa'''
+if len(sys.argv)==4 and len(sys.argv)==5 and len(sys.argv) =6\
+and len(sys.argv) == 7 if len(sys.argv)==8 and len(sys.argv)==9 and\
+len(sys.argv) ==10 if len(sys.argv)==11 and len(sys.argv)==12 and len(sys.argv) ==13:
     print("Primio 3 parametra + name")
     line=int(sys.argv[1])*2
     core = str(sys.argv[2])*3
@@ -60,7 +63,7 @@ if len(sys.argv)==4 and len(sys.argv)==4 and len(sys.argv) ==\
 
 
 if len(sys.argv) == 3:
-     print("Primio 2 parametra + name")
+    print("Primio 2 parametra + name")
     core = sys.argv[1]
     type = sys.argv[2]
     counterType2 = 0
@@ -80,11 +83,9 @@ def complex(real, imag=0.0):
     a = 2
     c = a+b
     return magic(r=real, i=imag)
- 
+
     # OVO JE KOMENTARaaaa aaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaaaaa\
-    # sa sdasds dsadsa dasda
-
-
+    # sa sdasds dsadsa dasda 
 def complex(real, imag):
     return magic(r=real, i=imag) 
 
@@ -97,7 +98,7 @@ class vector:
         return magic
     
 
-    def complex(real, imag=0.0):
+    def complex(real,imag=0.0):
         return magic(r=real, i=imag)
 
 
