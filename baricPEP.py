@@ -8,7 +8,7 @@
 #       PEP8 program
 #
 # Usage:
-#      run cmd in folder -> python baricPEP.py -P pathToFolderWithTests
+#      run cmd in folder -> python baricPEP.py -p pathToFolderWithTests
 #
 ##################################################
 
@@ -25,7 +25,7 @@ def start_program():
     print("Created by: eDAB")
     print("Created by: Davor Baric")
     print("Email: Davor.Baric@rt-rk.com")
-    print("Created: 15.01.2020.")
+    print("Created: 20.01.2020.")
     print("      __    __   __      __    ")
     print("     |__|  |__  |__| __ |__|   ")
     print("     |     |__  |       |__|   ")
@@ -266,10 +266,12 @@ def string_startswith_space_no_tab(string, counterSpace):
             counterSpace += 1
             lista_string.append(i)
     if counterSpace >= 4:
-        lista_string[0:counterSpace] = "\t" * (counterSpace/4)
+        lista_string[0:counterSpace] = "\t" * int(counterSpace/4)
         for i in lista_string:
+            print repr(i)
             tmp_string += i
-        string = tmp_string + string
+        string = str(tmp_string) + str(string)
+        print repr(string)
 
     return string
 
@@ -339,7 +341,6 @@ def main(path):
                     # ADDITIONALLY: comments in file, space between # and comment
                     final_content_import = import_content.replace('\t', '    ')
                     final_content = content_string.replace('\t', '    ').replace('#', '# ')
-
                     write_content_in_copy_file(final_content_import, final_content, copy_file_name)
 
             else:
