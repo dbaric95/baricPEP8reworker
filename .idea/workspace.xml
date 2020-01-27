@@ -18,8 +18,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.provjera">
+  <component name="RunManager" selected="Python.baricPEP">
     <configuration name="baricPEP" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PythonProjekt" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -85,8 +86,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.provjera" />
         <item itemvalue="Python.baricPEP" />
+        <item itemvalue="Python.provjera" />
         <item itemvalue="Python.new" />
       </list>
     </recent_temporary>
@@ -117,25 +118,29 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="187" key="GridCell.Tab.0.bottom" timestamp="1579292764891">
+    <state width="1899" height="187" key="GridCell.Tab.0.bottom" timestamp="1580145279536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="187" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579292764891" />
-    <state width="1899" height="187" key="GridCell.Tab.0.center" timestamp="1579292764891">
+    <state width="1899" height="187" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580145279536" />
+    <state width="1899" height="187" key="GridCell.Tab.0.center" timestamp="1580145279536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="187" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579292764891" />
-    <state width="1899" height="187" key="GridCell.Tab.0.left" timestamp="1579292764891">
+    <state width="1899" height="187" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580145279536" />
+    <state width="1899" height="187" key="GridCell.Tab.0.left" timestamp="1580145279536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="187" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579292764891" />
-    <state width="1899" height="187" key="GridCell.Tab.0.right" timestamp="1579292764891">
+    <state width="1899" height="187" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580145279536" />
+    <state width="1899" height="187" key="GridCell.Tab.0.right" timestamp="1580145279536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="187" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579292764891" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1579348547791">
+    <state width="1899" height="187" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580145279536" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1580144111755">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579348547791" />
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1580144111755" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1580145407465">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580145407465" />
   </component>
 </project>
